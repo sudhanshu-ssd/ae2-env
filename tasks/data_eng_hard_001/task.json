@@ -1,0 +1,10 @@
+{
+    "id": "data_eng_hard_001",
+    "domain": "data_eng",
+    "difficulty": "HARD",
+    "name": "Vectorize GroupBy Aggregation",
+    "description": "You are given a large DataFrame of sales. Calculate the average price per category. The current 'solution' uses a for-loop which is too slow for production. Rewrite it using vectorized Pandas operations to meet the performance baseline.Function must be named 'solution'.Return the result as a Python dict: {'category': mean_price, ...}",
+    "broken_code": "import pandas as pd\n\ndef solution(df_dict: dict):\n    # SLOW: Manual iteration\n    results = {}\n    df = pd.DataFrame(df_dict)\n    for cat in df['category'].unique():\n        subset = df[df['category'] == cat]\n        results[cat] = subset['price'].mean()\n    return results",
+    "baseline_time_ms": 40.0,
+    "baseline_mem_mib": 25.0
+}

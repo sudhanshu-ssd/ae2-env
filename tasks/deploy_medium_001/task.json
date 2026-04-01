@@ -1,0 +1,10 @@
+{
+    "id": "deploy_medium_001",
+    "domain": "deployment",
+    "difficulty": "MEDIUM",
+    "name": "Fix AI Inference Schema",
+    "description": "The Pydantic model 'InferenceRequest' is failing when the 'confidence' score is a float because it was defined as an 'int'. Fix the type hint.Function must be named 'solution'.",
+    "broken_code": "from pydantic import BaseModel\nfrom typing import List\n\nclass InferenceRequest(BaseModel):\n    text: str\n    # BROKEN: Should be float\n    confidence: int\n\ndef solution(data_dict):\n    obj = InferenceRequest(**data_dict)\n    return obj.confidence",
+    "baseline_time_ms": 15.0,
+    "baseline_mem_mib": 8.0
+}

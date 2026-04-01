@@ -1,0 +1,56 @@
+name: ae2-applied-ai-engineering
+version: 1.0.0
+description: >
+  AE² is a benchmark environment for training and evaluating AI agents
+  on real-world Applied AI Engineering tasks. Agents fix and optimize
+  broken Python code across 5 domains: Data Engineering, Model Ops,
+  NLP/LLM pipelines, API Deployment, and Evaluation Analysis.
+author: Sudhanshu Saini
+tags:
+  - openenv
+  - code-repair
+  - applied-ai
+  - engineering
+  - real-world
+environment:
+  class: EngEnv
+  module: environment
+action:
+  type: EngAction
+  fields:
+    sol:
+      type: str
+      description: Complete Python solution code with function named 'solution'
+observation:
+  type: EngObservation
+  fields:
+    domain:
+      type: str
+    difficulty:
+      type: str
+    task:
+      type: str
+    code:
+      type: str
+    done:
+      type: bool
+    reward:
+      type: float
+    output:
+      type: str
+    tests_passed:
+      type: int
+    num_tests:
+      type: int
+    time_taken:
+      type: float
+    mem_taken:
+      type: float
+    message:
+      type: str
+    num_steps_remain:
+      type: int
+reward:
+  range: [-0.3, 1.0]
+  shaped: true
+  partial_credit: true

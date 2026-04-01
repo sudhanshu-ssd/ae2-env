@@ -1,0 +1,10 @@
+{
+    "id": "nlp_medium_001",
+    "domain": "nlp_llm",
+    "difficulty": "MEDIUM",
+    "name": "Fix Batch Padding",
+    "description": "Enable padding so that a list of strings can be processed into a single torch tensor. Return the total number of elements (int) in the 'input_ids' tensor using .numel(). Function must be named 'solution'.",
+    "broken_code": "from transformers import AutoTokenizer\nimport torch\n\ndef solution(texts: list) -> int:\n    tokenizer = AutoTokenizer.from_pretrained('distilbert-base-uncased')\n    # MISSING: padding=True and return_tensors='pt'\n    inputs = tokenizer(texts)\n    # This will fail until return_tensors='pt' is added\n    return int(inputs['input_ids'].numel())",
+    "baseline_time_ms": 500.0,
+    "baseline_mem_mib": 50.0
+}

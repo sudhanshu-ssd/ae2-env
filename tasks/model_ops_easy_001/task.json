@@ -1,0 +1,10 @@
+{
+    "id": "model_ops_easy_001",
+    "domain": "model_ops",
+    "difficulty": "EASY",
+    "name": "Fix Pipeline Tuple Syntax",
+    "description": "The Scikit-learn Pipeline initialization is missing a comma between steps and has incorrect tuple nesting. Fix it so it returns a valid fitted pipeline.Function must be named 'solution'.Fix the Pipeline syntax and return ONLY int(pipe.predict(X)[0]) — the prediction for first sample.",
+    "broken_code": "from sklearn.pipeline import Pipeline\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.linear_model import LogisticRegression\nimport numpy as np\n\ndef solution(X, y):\n    # BROKEN: Missing comma between tuples and wrong nesting\n    pipe = Pipeline([\n        ('scaler', StandardScaler())\n        ('clf', LogisticRegression())\n    ])\n    return pipe.fit(X, y).predict(X)[0]",
+    "baseline_time_ms": 500.0,
+    "baseline_mem_mib": 500.0
+}

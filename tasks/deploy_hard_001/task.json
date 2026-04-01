@@ -1,0 +1,10 @@
+{
+    "id": "deploy_hard_001",
+    "domain": "deployment",
+    "difficulty": "HARD",
+    "name": "Solve N+1 API Latency",
+    "description": "The 'get_user_profiles' function is hitting the database 100 times for 100 users, causing massive latency. Fix the logic to use the 'bulk_fetch_profiles' function instead of calling 'single_fetch' in a loop.Function must be named 'solution'.",
+    "broken_code":"import time\n\ndef single_fetch(uid):\n    time.sleep(0.01)\n    return {'id': uid, 'profile': 'standard'}\n\ndef bulk_fetch_profiles(uids):\n    time.sleep(0.01)\n    return [{'id': uid, 'profile': 'standard'} for uid in uids]\n\ndef solution(user_ids):\n    profiles = []\n    for uid in user_ids:\n        profiles.append(single_fetch(uid))\n    return profiles",
+    "baseline_time_ms": 30.0,
+    "baseline_mem_mib": 10.0
+}

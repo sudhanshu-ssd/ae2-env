@@ -1,0 +1,9 @@
+{
+    "cases": [
+        {"input": {"df_dict": {"category": ["A", "B", "A"], "price": [10.0, 20.0, 30.0]}}, "expected": {"A": 20.0, "B": 20.0}},
+        {"input": {"df_dict": {"category": ["X", "X", "Y"], "price": [100, 200, 500]}}, "expected": {"X": 150.0, "Y": 500.0}},
+        {"input": {"df_dict": {"category": ["Z"], "price": [0.0]}}, "expected": {"Z": 0.0}},
+        {"input": {"df_dict": {"category": ["A", "B", "C"], "price": [10, 20, 30]}}, "expected": {"A": 10.0, "B": 20.0, "C": 30.0}},
+        {"input": {"df_dict": {"category": ["M", "M", "M", "M"], "price": [1, 2, 3, 4]}}, "expected": {"M": 2.5}}
+    ]
+}

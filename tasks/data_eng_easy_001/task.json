@@ -1,0 +1,10 @@
+{
+    "id": "data_eng_easy_001",
+    "domain": "data_eng",
+    "difficulty": "EASY",
+    "name": "Fix Broken Currency Parser",
+    "description": "This function should parse currency strings like '$1,000' into floats but crashes on comma-formatted numbers. Fix the syntax and logic so it handles all currency formats correctly. Function must be named 'solution'.",
+    "broken_code": "def solution(value: str) -> float:\n    cleaned = value.replace('$' '')\n    cleaned = cleaned.replace(',' '')\n    return float(cleaned)",
+    "baseline_time_ms": 5.0,
+    "baseline_mem_mib": 5.0
+}

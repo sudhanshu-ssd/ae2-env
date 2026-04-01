@@ -1,0 +1,9 @@
+{
+    "cases": [
+        {"input": {"value": "$1,000"}, "expected": 1000.0},
+        {"input": {"value": "$50"}, "expected": 50.0},
+        {"input": {"value": "$1,000,000"}, "expected": 1000000.0},
+        {"input": {"value": "$0"}, "expected": 0.0},
+        {"input": {"value": "$99.99"}, "expected": 99.99}
+    ]
+}

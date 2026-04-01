@@ -1,0 +1,9 @@
+{
+    "id": "nlp_easy_001",
+    "domain": "nlp_llm",
+    "difficulty": "EASY",
+    "name": "Correct Tokenizer Argument",
+    "description": "The function uses 'input_str' as keyword argument which is invalid. Fix it to use the correct positional argument. Return the flat list of token IDs using tokenizer(text_input)['input_ids'] directly — this returns a plain Python list without nesting. Function must be named 'solution'.",    "broken_code": "from transformers import AutoTokenizer\n\ndef solution(text_input: str) -> list:\n    tokenizer = AutoTokenizer.from_pretrained('distilbert-base-uncased')\n    tokens = tokenizer(input_str=text_input)\n    return tokens['input_ids']",
+    "baseline_time_ms": 40.0,
+    "baseline_mem_mib": 50.0
+}

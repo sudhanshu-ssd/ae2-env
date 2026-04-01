@@ -1,0 +1,9 @@
+{
+    "cases": [
+        {"input": {"text_input": "hello"}, "expected": [101, 7592, 102]},
+        {"input": {"text_input": "AI"}, "expected": [101, 9932, 102]},
+        {"input": {"text_input": ""}, "expected": [101, 102]},
+        {"input": {"text_input": "good"}, "expected": [101, 2204, 102]},
+        {"input": {"text_input": "bad"}, "expected": [101, 2919, 102]}
+    ]
+}

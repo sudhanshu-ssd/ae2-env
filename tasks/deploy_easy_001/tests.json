@@ -1,0 +1,24 @@
+{
+    "cases": [
+        {
+            "input": {"request_dict": {"text": "great product", "threshold": 0.9}},
+            "expected": {"text": "great product", "label": "positive", "threshold": 0.9}
+        },
+        {
+            "input": {"request_dict": {"text": "terrible", "threshold": 0.2}},
+            "expected": {"text": "terrible", "label": "negative", "threshold": 0.2}
+        },
+        {
+            "input": {"request_dict": {"text": "ok", "threshold": 0.5}},
+            "expected": {"text": "ok", "label": "negative", "threshold": 0.5}
+        },
+        {
+            "input": {"request_dict": {"text": "amazing", "threshold": 0.51}},
+            "expected": {"text": "amazing", "label": "positive", "threshold": 0.51}
+        },
+        {
+            "input": {"request_dict": {"text": "", "threshold": 0.8}},
+            "expected": {"text": "", "label": "positive", "threshold": 0.8}
+        }
+    ]
+}

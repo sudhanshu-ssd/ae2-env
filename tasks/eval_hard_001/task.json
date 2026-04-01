@@ -1,0 +1,10 @@
+{
+    "id": "eval_hard_001",
+    "domain": "eval_analysis",
+    "difficulty": "HARD",
+    "name": "Optimize Log Parser with Compiled Regex",
+    "description": "This function parses server logs to extract error counts but recompiles the regex pattern on every iteration, making it extremely slow on large logs. Fix it by compiling the pattern once before the loop. Return total error count as integer. Function must be named 'solution'.",
+    "broken_code": "import re\n\ndef solution(log_lines: list) -> int:\n    count = 0\n    for line in log_lines:\n        # SLOW: recompiles regex every iteration\n        match = re.search(r'ERROR:\\s*(\\w+)', line)\n        if match:\n            count += 1\n    return count",
+    "baseline_time_ms": 50.0,
+    "baseline_mem_mib": 10.0
+}

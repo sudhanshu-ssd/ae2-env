@@ -1,0 +1,10 @@
+{
+    "id": "eval_medium_001",
+    "domain": "eval_analysis",
+    "difficulty": "MEDIUM",
+    "name": "Fix Wrong F1 Score Averaging",
+    "description": "This function currently uses 'macro' averaging to calculate the F1 score. Modify the function to use 'weighted' averaging instead. Ensure you keep the existing f1_score import from sklearn.metrics. Return the result rounded to 4 decimal places.",
+    "broken_code": "from sklearn.metrics import f1_score\n\ndef solution(y_true: list, y_pred: list) -> float:\n    # WRONG: macro averaging treats all classes equally\n    # Should use weighted to account for class imbalance\n    score = f1_score(y_true, y_pred, average='macro')\n    return round(score, 4)",
+    "baseline_time_ms": 500.0,
+    "baseline_mem_mib": 500.0
+}

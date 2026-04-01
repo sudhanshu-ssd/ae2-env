@@ -1,0 +1,10 @@
+{
+    "id": "model_ops_medium_001",
+    "domain": "model_ops",
+    "difficulty": "MEDIUM",
+    "name": "Fix Missing Feature Scaling",
+    "description": "LogisticRegression fails to converge on large-scale features. Fix by adding StandardScaler to the pipeline before the classifier. Fit on the entire dataset (X, y) without splitting. Return the integer prediction for the last sample. Function must be named 'solution'.",
+    "broken_code": "from sklearn.linear_model import LogisticRegression\nfrom sklearn.pipeline import Pipeline\n\ndef solution(X, y):\n    # MISSING: StandardScaler in the pipeline\n    model = Pipeline([\n        ('classifier', LogisticRegression())\n    ])\n    model.fit(X, y)\n    return int(model.predict(X)[-1])",
+    "baseline_time_ms": 500.0,
+    "baseline_mem_mib": 500.0
+}

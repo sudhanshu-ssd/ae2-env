@@ -1,0 +1,176 @@
+{
+  "model": "meta-llama/Llama-3.1-8B-Instruct",
+  "results": [
+    {
+      "task": "This function should parse currency strings like '$1,000' into floats but crashes on comma-formatted numbers. Fix the syntax and logic so it handles all currency formats correctly. Function must be named 'solution'.",
+      "domain": "data_eng",
+      "difficulty": "EASY",
+      "steps_taken": 1,
+      "final_reward": 1.0,
+      "grader_score": 1.0,
+      "tests_passed": 5,
+      "total_tests": 5,
+      "success": true
+    },
+    {
+      "task": "This function takes a plain dict 'request_dict' and must return a dict with keys 'text', 'label', and 'threshold'. The label is 'positive' if threshold > 0.5 else 'negative'. Fix the NameError by defining the PredictionRequest class inside the function or at module level. Do NOT change the function signature. Function must be named 'solution' and must accept exactly one argument: request_dict (dict).",
+      "domain": "deployment",
+      "difficulty": "EASY",
+      "steps_taken": 1,
+      "final_reward": 1.0,
+      "grader_score": 1.0,
+      "tests_passed": 5,
+      "total_tests": 5,
+      "success": true
+    },
+    {
+      "task": "This function should calculate accuracy (correct predictions / total predictions) but has a syntax error and divides by the wrong value. Fix it to return accuracy as a float between 0.0 and 1.0. Function must be named 'solution'.",
+      "domain": "eval_analysis",
+      "difficulty": "EASY",
+      "steps_taken": 1,
+      "final_reward": 1.0,
+      "grader_score": 1.0,
+      "tests_passed": 5,
+      "total_tests": 5,
+      "success": true
+    },
+    {
+      "task": "The Scikit-learn Pipeline initialization is missing a comma between steps and has incorrect tuple nesting. Fix it so it returns a valid fitted pipeline.Function must be named 'solution'.Fix the Pipeline syntax and return ONLY int(pipe.predict(X)[0]) \u00e2\u20ac\u201d the prediction for first sample.",
+      "domain": "model_ops",
+      "difficulty": "EASY",
+      "steps_taken": 1,
+      "final_reward": 1.0,
+      "grader_score": 1.0,
+      "tests_passed": 3,
+      "total_tests": 3,
+      "success": true
+    },
+    {
+      "task": "The function uses 'input_str' as keyword argument which is invalid. Fix it to use the correct positional argument. Return the flat list of token IDs using tokenizer(text_input)['input_ids'] directly \u00e2\u20ac\u201d this returns a plain Python list without nesting. Function must be named 'solution'.",
+      "domain": "nlp_llm",
+      "difficulty": "EASY",
+      "steps_taken": 2,
+      "final_reward": 1.0,
+      "grader_score": 1.0,
+      "tests_passed": 5,
+      "total_tests": 5,
+      "success": true
+    },
+    {
+      "task": "This function processes a list of text samples and returns their lengths. It crashes when a None value is present in the list. Fix it to handle nulls by returning 0 for None entries. Function must be named 'solution'.",
+      "domain": "data_eng",
+      "difficulty": "MEDIUM",
+      "steps_taken": 1,
+      "final_reward": 1.0,
+      "grader_score": 1.0,
+      "tests_passed": 5,
+      "total_tests": 5,
+      "success": true
+    },
+    {
+      "task": "The Pydantic model 'InferenceRequest' is failing when the 'confidence' score is a float because it was defined as an 'int'. Fix the type hint.Function must be named 'solution'.",
+      "domain": "deployment",
+      "difficulty": "MEDIUM",
+      "steps_taken": 2,
+      "final_reward": 0.793,
+      "grader_score": 0.793,
+      "tests_passed": 3,
+      "total_tests": 3,
+      "success": true
+    },
+    {
+      "task": "This function currently uses 'macro' averaging to calculate the F1 score. Modify the function to use 'weighted' averaging instead. Ensure you keep the existing f1_score import from sklearn.metrics. Return the result rounded to 4 decimal places.",
+      "domain": "eval_analysis",
+      "difficulty": "MEDIUM",
+      "steps_taken": 2,
+      "final_reward": 1.0,
+      "grader_score": 1.0,
+      "tests_passed": 5,
+      "total_tests": 5,
+      "success": true
+    },
+    {
+      "task": "LogisticRegression fails to converge on large-scale features. Fix by adding StandardScaler to the pipeline before the classifier. Fit on the entire dataset (X, y) without splitting. Return the integer prediction for the last sample. Function must be named 'solution'.",
+      "domain": "model_ops",
+      "difficulty": "MEDIUM",
+      "steps_taken": 1,
+      "final_reward": 1.0,
+      "grader_score": 1.0,
+      "tests_passed": 5,
+      "total_tests": 5,
+      "success": true
+    },
+    {
+      "task": "Enable padding so that a list of strings can be processed into a single torch tensor. Return the total number of elements (int) in the 'input_ids' tensor using .numel(). Function must be named 'solution'.",
+      "domain": "nlp_llm",
+      "difficulty": "MEDIUM",
+      "steps_taken": 2,
+      "final_reward": 1.0,
+      "grader_score": 1.0,
+      "tests_passed": 2,
+      "total_tests": 2,
+      "success": true
+    },
+    {
+      "task": "You are given a large DataFrame of sales. Calculate the average price per category. The current 'solution' uses a for-loop which is too slow for production. Rewrite it using vectorized Pandas operations to meet the performance baseline.Function must be named 'solution'.Return the result as a Python dict: {'category': mean_price, ...}",
+      "domain": "data_eng",
+      "difficulty": "HARD",
+      "steps_taken": 10,
+      "final_reward": 0.6,
+      "grader_score": 0.6,
+      "tests_passed": 5,
+      "total_tests": 5,
+      "success": true
+    },
+    {
+      "task": "The 'get_user_profiles' function is hitting the database 100 times for 100 users, causing massive latency. Fix the logic to use the 'bulk_fetch_profiles' function instead of calling 'single_fetch' in a loop.Function must be named 'solution'.",
+      "domain": "deployment",
+      "difficulty": "HARD",
+      "steps_taken": 4,
+      "final_reward": 1.0,
+      "grader_score": 1.0,
+      "tests_passed": 5,
+      "total_tests": 5,
+      "success": true
+    },
+    {
+      "task": "This function parses server logs to extract error counts but recompiles the regex pattern on every iteration, making it extremely slow on large logs. Fix it by compiling the pattern once before the loop. Return total error count as integer. Function must be named 'solution'.",
+      "domain": "eval_analysis",
+      "difficulty": "HARD",
+      "steps_taken": 2,
+      "final_reward": 1.0,
+      "grader_score": 1.0,
+      "tests_passed": 5,
+      "total_tests": 5,
+      "success": true
+    },
+    {
+      "task": "The current inference function is slow and consumes too much memory because it uses full precision (float32) on the CPU. Optimize it by: 1. Moving the model and input to 'cuda' if available, otherwise 'cpu'. 2. Using torch.cuda.amp.autocast (or torch.amp.autocast) for mixed precision. 3. Ensure the output is moved back to CPU and converted to a float. Function must be named 'solution'.",
+      "domain": "model_ops",
+      "difficulty": "HARD",
+      "steps_taken": 4,
+      "final_reward": 1.0,
+      "grader_score": 1.0,
+      "tests_passed": 3,
+      "total_tests": 3,
+      "success": true
+    },
+    {
+      "task": "This function tokenizes a list of texts one by one in a loop, which is extremely slow for large inputs. Rewrite it to use batched tokenization in a single call WITHOUT padding. Return a plain Python list of input_id lists (no numpy arrays, no nesting). Each inner list contains the token IDs for one text. Function must be named 'solution'.",
+      "domain": "nlp_llm",
+      "difficulty": "HARD",
+      "steps_taken": 7,
+      "final_reward": 1.0,
+      "grader_score": 1.0,
+      "tests_passed": 5,
+      "total_tests": 5,
+      "success": true
+    }
+  ],
+  "summary": {
+    "EASY": 1.0,
+    "MEDIUM": 0.9586,
+    "HARD": 0.9199999999999999
+  },
+  "overall": 0.9595333333333333
+}

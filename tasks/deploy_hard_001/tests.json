@@ -1,0 +1,9 @@
+{
+    "cases": [
+        {"input": {"user_ids": [1, 2]}, "expected": [{"id": 1, "profile": "standard"}, {"id": 2, "profile": "standard"}]},
+        {"input": {"user_ids": [99]}, "expected": [{"id": 99, "profile": "standard"}]},
+        {"input": {"user_ids": []}, "expected": []},
+        {"input": {"user_ids": [10, 20, 30]}, "expected": [{"id": 10, "profile": "standard"}, {"id": 20, "profile": "standard"}, {"id": 30, "profile": "standard"}]},
+        {"input": {"user_ids": [5, 5]}, "expected": [{"id": 5, "profile": "standard"}, {"id": 5, "profile": "standard"}]}
+    ]
+}

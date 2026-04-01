@@ -1,0 +1,9 @@
+{
+    "cases": [
+        {"input": {"y_true": [1, 0, 1, 1], "y_pred": [1, 0, 0, 1]}, "expected": 0.75},
+        {"input": {"y_true": [1, 1, 1], "y_pred": [1, 1, 1]}, "expected": 1.0},
+        {"input": {"y_true": [0, 0, 0], "y_pred": [1, 1, 1]}, "expected": 0.0},
+        {"input": {"y_true": [1, 0], "y_pred": [0, 1]}, "expected": 0.0},
+        {"input": {"y_true": [1, 0, 1, 0, 1], "y_pred": [1, 0, 1, 0, 0]}, "expected": 0.8}
+    ]
+}

@@ -1,0 +1,7 @@
+{
+    "cases": [
+        {"input": {"data_dict": {"text": "test", "confidence": 0.95}}, "expected": 0.95},
+        {"input": {"data_dict": {"text": "low", "confidence": 0.1}}, "expected": 0.1},
+        {"input": {"data_dict": {"text": "high", "confidence": 1.0}}, "expected": 1.0}
+    ]
+}

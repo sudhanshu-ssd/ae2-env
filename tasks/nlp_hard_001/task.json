@@ -1,0 +1,10 @@
+{
+    "id": "nlp_hard_001",
+    "domain": "nlp_llm",
+    "difficulty": "HARD",
+    "name": "Optimize Sequential Tokenization to Batched",
+    "description": "This function tokenizes a list of texts one by one in a loop, which is extremely slow for large inputs. Rewrite it to use batched tokenization in a single call WITHOUT padding. Return a plain Python list of input_id lists (no numpy arrays, no nesting). Each inner list contains the token IDs for one text. Function must be named 'solution'.",
+    "broken_code": "from transformers import AutoTokenizer\n\ndef solution(texts: list) -> list:\n    tokenizer = AutoTokenizer.from_pretrained('distilbert-base-uncased')\n    results = []\n    for text in texts:\n        tokens = tokenizer(text)\n        results.append(tokens['input_ids'])\n    return results",
+    "baseline_time_ms": 200.0,
+    "baseline_mem_mib": 60.0
+}

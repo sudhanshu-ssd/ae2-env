@@ -1,0 +1,12 @@
+{
+    "cases": [
+        {
+            "input": {"texts": ["hi", "hello"]}, 
+            "expected": 6
+        },
+        {
+            "input": {"texts": ["short", "a much longer sentence"]}, 
+            "expected": 12
+        }
+    ]
+}

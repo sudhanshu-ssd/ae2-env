@@ -1,0 +1,10 @@
+{
+    "id": "deploy_easy_001",
+    "domain": "deployment",
+    "difficulty": "EASY",
+    "name": "Fix Missing Route Decorator",
+    "description": "This function takes a plain dict 'request_dict' and must return a dict with keys 'text', 'label', and 'threshold'. The label is 'positive' if threshold > 0.5 else 'negative'. Fix the NameError by defining the PredictionRequest class inside the function or at module level. Do NOT change the function signature. Function must be named 'solution' and must accept exactly one argument: request_dict (dict).",
+    "broken_code": "from pydantic import BaseModel\n\nclass PredictionRequest(BaseModel):\n    text: str\n    threshold: float\n\ndef solution(request_dict: dict) -> dict:\n    req = PredictionRequest(**request_dict)\n    label = 'positive' if req.threshold > 0.5 else 'negative'\n    return {'text' req.text, 'label': label, 'threshold': req.threshold}",
+    "baseline_time_ms": 10.0,
+    "baseline_mem_mib": 8.0
+}

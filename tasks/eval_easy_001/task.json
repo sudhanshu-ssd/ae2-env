@@ -1,0 +1,10 @@
+{
+    "id": "eval_easy_001",
+    "domain": "eval_analysis",
+    "difficulty": "EASY",
+    "name": "Fix Broken Accuracy Calculation",
+    "description": "This function should calculate accuracy (correct predictions / total predictions) but has a syntax error and divides by the wrong value. Fix it to return accuracy as a float between 0.0 and 1.0. Function must be named 'solution'.",
+    "broken_code": "def solution(y_true: list, y_pred: list) -> float:\n    correct = sum(1 for t, p in zip(y_true y_pred) if t == p)\n    return correct / len(y_true[0])",
+    "baseline_time_ms": 5.0,
+    "baseline_mem_mib": 5.0
+}

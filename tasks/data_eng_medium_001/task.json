@@ -1,0 +1,10 @@
+{
+    "id": "data_eng_medium_001",
+    "domain": "data_eng",
+    "difficulty": "MEDIUM",
+    "name": "Fix Null Handling in Dataset Map",
+    "description": "This function processes a list of text samples and returns their lengths. It crashes when a None value is present in the list. Fix it to handle nulls by returning 0 for None entries. Function must be named 'solution'.",
+    "broken_code": "def solution(texts: list) -> list:\n    return [len(text.strip()) for text in texts]",
+    "baseline_time_ms": 10.0,
+    "baseline_mem_mib": 8.0
+}

@@ -1,0 +1,10 @@
+{
+    "id": "model_ops_hard_001",
+    "domain": "model_ops",
+    "difficulty": "HARD",
+    "name": "Implement Mixed Precision Inference",
+    "description": "The current inference function is slow and consumes too much memory because it uses full precision (float32) on the CPU. Optimize it by: 1. Moving the model and input to 'cuda' if available, otherwise 'cpu'. 2. Using torch.cuda.amp.autocast (or torch.amp.autocast) for mixed precision. 3. Ensure the output is moved back to CPU and converted to a float. Function must be named 'solution'.",
+    "broken_code": "import torch\nimport torch.nn as nn\n\ndef solution(data_input: list) -> float:\n    model = nn.Sequential(nn.Linear(10, 100), nn.ReLU(), nn.Linear(100, 1))\n    # SLOW: Defaulting to CPU and float32\n    x = torch.tensor(data_input, dtype=torch.float32)\n    output = model(x)\n    return float(output.sum())",
+    "baseline_time_ms": 100.0,
+    "baseline_mem_mib": 400.0
+}

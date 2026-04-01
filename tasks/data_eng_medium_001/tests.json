@@ -1,0 +1,9 @@
+{
+    "cases": [
+        {"input": {"texts": ["hello", null, "world"]}, "expected": [5, 0, 5]},
+        {"input": {"texts": ["AI", null, null]}, "expected": [2, 0, 0]},
+        {"input": {"texts": ["test"]}, "expected": [4]},
+        {"input": {"texts": [null, null, null]}, "expected": [0, 0, 0]},
+        {"input": {"texts": ["hello", null, "bye"]}, "expected": [5, 0, 3]}
+    ]
+}

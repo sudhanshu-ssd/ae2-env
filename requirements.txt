@@ -1,0 +1,11 @@
+openenv-core==0.2.2
+fastapi
+uvicorn
+pydantic
+pandas
+numpy
+scikit-learn
+transformers
+datasets
+requests
+openai

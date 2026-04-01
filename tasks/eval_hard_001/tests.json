@@ -1,0 +1,24 @@
+{
+    "cases": [
+        {
+            "input": {"log_lines": ["INFO: start", "ERROR: timeout", "ERROR: crash", "INFO: done"]},
+            "expected": 2
+        },
+        {
+            "input": {"log_lines": ["INFO: ok", "INFO: ok", "INFO: ok"]},
+            "expected": 0
+        },
+        {
+            "input": {"log_lines": ["ERROR: null", "ERROR: overflow", "ERROR: memory"]},
+            "expected": 3
+        },
+        {
+            "input": {"log_lines": []},
+            "expected": 0
+        },
+        {
+            "input": {"log_lines": ["ERROR: start", "INFO: middle", "ERROR: end", "DEBUG: trace", "ERROR: final"]},
+            "expected": 3
+        }
+    ]
+}
