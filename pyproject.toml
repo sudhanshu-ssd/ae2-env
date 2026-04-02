@@ -5,6 +5,12 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "ae2-applied-ai-engineering"
 version = "1.0.0"
+
+[project.scripts]
+# This creates the 'server' entry point the validator is looking for
+ae2-server = "server.app:app"
+
+
 description = "AE² is a benchmark environment for training and evaluating AI agents on real-world Applied AI Engineering tasks."
 authors = [
   { name="Sudhanshu Saini" },
@@ -30,4 +36,4 @@ dev = ["pytest"]
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["*"]
+include = ["server*"]

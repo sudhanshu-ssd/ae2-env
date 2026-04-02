@@ -1,7 +1,8 @@
 import sys
 import os
 
-# sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 
 from openenv.core.env_server import create_fastapi_app
 from fastapi import FastAPI
@@ -83,7 +84,8 @@ def trigger_baseline():
     # Try to load pre-computed results if available
     import json
     import os
-    results_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "baseline_results.json")
+    # results_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "baseline_results.json") # when app is in root 
+    results_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),"baseline_results.json") # when app is in server/
     if os.path.exists(results_path):
         with open(results_path) as f:
             data = json.load(f)
