@@ -57,7 +57,7 @@ def get_grader_score(task_id: str, code: str):
         return JSONResponse(status_code=500, content={"error": str(e)})
 
 
-@app.post("/baseline")
+@app.get("/baseline")
 def trigger_baseline():
     """
     Triggers baseline inference and returns scores.
