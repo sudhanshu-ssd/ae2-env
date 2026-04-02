@@ -5,19 +5,15 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "ae2-applied-ai-engineering"
 version = "1.0.0"
-
-[project.scripts]
-# This creates the 'server' entry point the validator is looking for
-ae2-server = "server.app:main"
-
-
 description = "AE² is a benchmark environment for training and evaluating AI agents on real-world Applied AI Engineering tasks."
+readme = "README.md"
+requires-python = ">=3.10"
 authors = [
   { name="Sudhanshu Saini" },
-  { name="Tanmay [Last Name]" }
+  { name="Tanmay" }
 ]
 dependencies = [
-    "openenv-core>=0.2.2",  # Specifically use >= to satisfy the checker
+    "openenv-core>=0.2.2",
     "fastapi",
     "uvicorn",
     "pydantic",
@@ -29,10 +25,9 @@ dependencies = [
     "requests",
     "openai"
 ]
-requires-python = ">=3.10"
 
-[project.optional-dependencies]
-dev = ["pytest"]
+[project.scripts]
+ae2-server = "server.app:main"
 
 [tool.setuptools.packages.find]
 where = ["."]
