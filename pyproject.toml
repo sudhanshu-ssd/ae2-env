@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=61.0"]
+requires = ["setuptools>=61.0", "setuptools-scm"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -27,8 +27,9 @@ dependencies = [
 ]
 
 [project.scripts]
+# Ensure this exactly matches the function name in server/app.py
 ae2-server = "server.app:main"
 
-[tool.setuptools.packages.find]
-where = ["."]
-include = ["server*"]
+[tool.setuptools]
+# This ensures that both the root files and the server folder are recognized
+packages = ["server"]
