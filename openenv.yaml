@@ -5,7 +5,7 @@ description: >
   on real-world Applied AI Engineering tasks. Agents fix and optimize
   broken Python code across 5 domains: Data Engineering, Model Ops,
   NLP/LLM pipelines, API Deployment, and Evaluation Analysis.
-author: Sudhanshu Saini
+author: Sudhanshu Saini & Tanmay Tomar
 tags:
   - openenv
   - code-repair

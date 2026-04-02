@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ae2-applied-ai-engineering"
+version = "1.0.0"
+description = "AE² is a benchmark environment for training and evaluating AI agents on real-world Applied AI Engineering tasks."
+authors = [
+  { name="Sudhanshu Saini" },
+  { name="Tanmay [Last Name]" }
+]
+dependencies = [
+    "openenv-core==0.2.2",
+    "fastapi",
+    "uvicorn",
+    "pydantic",
+    "pandas",
+    "numpy",
+    "scikit-learn",
+    "transformers",
+    "datasets",
+    "requests",
+    "openai"
+]
+requires-python = ">=3.10"
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["*"]

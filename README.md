@@ -243,6 +243,5 @@ ae2-env/
 
 ## Author
 
-**Sudhanshu Saini** — B.E. AI & Data Science, CTAE Udaipur  
-Top 3% Amazon ML Challenge 2025 · NFPC 2026 Top 12/400+  
-[GitHub](https://github.com/sudhanshu-ssd) · [LinkedIn](https://linkedin.com/in/sudhanshu-saini-558575362/)
+**Sudhanshu Saini** — B.Tech. AI & Data Science, CTAE Udaipur  
+**Tanmay Tomar** - B.Tech. AI & Data Science, MITRC Alwar 
