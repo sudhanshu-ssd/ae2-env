@@ -58,7 +58,10 @@ def run_single_test(
     Run agent code against ONE test case in subprocess.
     Returns: (passed, output, time_ms, mem_mib)
     """
-    
+    # Before the runner_script f-string, compute these:
+    test_input_json = json.dumps(test_input, ensure_ascii=True).replace("'", "\\'")
+    expected_json = json.dumps(expected, ensure_ascii=True).replace("'", "\\'")
+        
     # Build test runner script
     runner_script = f"""# -*- coding: utf-8 -*-
 import json, time, tracemalloc, math, sys
@@ -123,8 +126,8 @@ def compare_results(actual, expected):
 {code}
 
 # Test input
-test_input = json.loads('{json.dumps(test_input, ensure_ascii=True).replace("'", "\\'")}')
-expected = json.loads('{json.dumps(expected, ensure_ascii=True).replace("'", "\\'")}')
+test_input = json.loads('{test_input_json}')
+expected = json.loads('{expected_json}')
 
 # Run and measure
 tracemalloc.start()
