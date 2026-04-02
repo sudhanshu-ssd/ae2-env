@@ -1,7 +1,7 @@
 import sys
 import os
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__)))) # when app is in server/
 
 
 from openenv.core.env_server import create_fastapi_app
@@ -106,7 +106,6 @@ def trigger_baseline():
 
 @app.get("/health")
 def health():
-    """Health check — judges ping this first."""
     return JSONResponse(content={
         "status": "ok",
         "environment": "AE2 - Applied AI Engineering Environment",
@@ -114,3 +113,26 @@ def health():
         "tasks_available": sum(len(TASKS[l]) for l in TASKS),
         "domains": ["data_eng", "model_ops", "nlp_llm", "deployment", "eval_analysis"]
     })
+
+@app.get("/")
+def read_root():
+    """
+    Landing page for the AE² Environment.
+    Prevents 'Detail Not Found' when visiting the base URL.
+    """
+    return JSONResponse(content={
+        "name": "ae2-applied-ai-engineering",
+        "version": "1.0.0",
+        "description": "AE² is a benchmark environment for training and evaluating AI agents on real-world Applied AI Engineering tasks.",
+        "status": "active",
+        "repository": "https://github.com/sudhanshu-ssd/ae2-env"
+    })
+
+
+def main():
+    """Main entry point for the server, required by OpenEnv validator."""
+    import uvicorn
+    uvicorn.run("server.app:app", host="0.0.0.0", port=7860, reload=False)
+
+if __name__ == "__main__":
+    main()
