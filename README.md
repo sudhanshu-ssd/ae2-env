@@ -1,3 +1,13 @@
+---
+title: AE2-Applied-AI-Engineering
+emoji: 🏗️
+colorFrom: blue
+colorTo: green
+sdk: docker
+pinned: false
+app_port: 7860
+---
+
 # AE² — Applied AI Engineering Environment
 
 [![OpenEnv](https://img.shields.io/badge/OpenEnv-compatible-blue)](https://github.com/meta-pytorch/OpenEnv)
