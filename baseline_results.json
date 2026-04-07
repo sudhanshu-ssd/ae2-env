@@ -7,7 +7,7 @@
       "difficulty": "EASY",
       "steps_taken": 1,
       "final_reward": 1.0,
-      "grader_score": 0.0001,
+      "grader_score": 0.99,
       "tests_passed": 5,
       "total_tests": 5,
       "success": true
@@ -18,7 +18,7 @@
       "difficulty": "EASY",
       "steps_taken": 1,
       "final_reward": 1.0,
-      "grader_score": 0.0001,
+      "grader_score": 0.99,
       "tests_passed": 5,
       "total_tests": 5,
       "success": true
@@ -29,7 +29,7 @@
       "difficulty": "EASY",
       "steps_taken": 1,
       "final_reward": 1.0,
-      "grader_score": 0.0001,
+      "grader_score": 0.99,
       "tests_passed": 5,
       "total_tests": 5,
       "success": true
@@ -38,9 +38,9 @@
       "task": "The Scikit-learn Pipeline initialization is missing a comma between steps and has incorrect tuple nesting. Fix it so it returns a valid fitted pipeline.Function must be named 'solution'.Fix the Pipeline syntax and return ONLY int(pipe.predict(X)[0]) \u2014 the prediction for first sample.",
       "domain": "model_ops",
       "difficulty": "EASY",
-      "steps_taken": 2,
+      "steps_taken": 1,
       "final_reward": 1.0,
-      "grader_score": 0.0001,
+      "grader_score": 0.75,
       "tests_passed": 3,
       "total_tests": 3,
       "success": true
@@ -51,7 +51,7 @@
       "difficulty": "EASY",
       "steps_taken": 2,
       "final_reward": 1.0,
-      "grader_score": 0.0001,
+      "grader_score": 0.75,
       "tests_passed": 5,
       "total_tests": 5,
       "success": true
@@ -62,7 +62,7 @@
       "difficulty": "MEDIUM",
       "steps_taken": 1,
       "final_reward": 1.0,
-      "grader_score": 0.0001,
+      "grader_score": 0.99,
       "tests_passed": 5,
       "total_tests": 5,
       "success": true
@@ -72,8 +72,8 @@
       "domain": "deployment",
       "difficulty": "MEDIUM",
       "steps_taken": 2,
-      "final_reward": 0.723,
-      "grader_score": 0.0001,
+      "final_reward": 0.715,
+      "grader_score": 0.75,
       "tests_passed": 3,
       "total_tests": 3,
       "success": true
@@ -84,7 +84,7 @@
       "difficulty": "MEDIUM",
       "steps_taken": 2,
       "final_reward": 1.0,
-      "grader_score": 0.0001,
+      "grader_score": 0.99,
       "tests_passed": 5,
       "total_tests": 5,
       "success": true
@@ -95,7 +95,7 @@
       "difficulty": "MEDIUM",
       "steps_taken": 1,
       "final_reward": 1.0,
-      "grader_score": 0.0001,
+      "grader_score": 0.75,
       "tests_passed": 5,
       "total_tests": 5,
       "success": true
@@ -105,8 +105,8 @@
       "domain": "nlp_llm",
       "difficulty": "MEDIUM",
       "steps_taken": 2,
-      "final_reward": 0.949,
-      "grader_score": 0.0001,
+      "final_reward": 0.812,
+      "grader_score": 0.81,
       "tests_passed": 2,
       "total_tests": 2,
       "success": true
@@ -116,8 +116,8 @@
       "domain": "data_eng",
       "difficulty": "HARD",
       "steps_taken": 2,
-      "final_reward": 1.0,
-      "grader_score": 0.0001,
+      "final_reward": 0.89,
+      "grader_score": 0.888,
       "tests_passed": 5,
       "total_tests": 5,
       "success": true
@@ -126,12 +126,12 @@
       "task": "The 'get_user_profiles' function is hitting the database 100 times for 100 users, causing massive latency. Fix the logic to use the 'bulk_fetch_profiles' function instead of calling 'single_fetch' in a loop.Function must be named 'solution'.",
       "domain": "deployment",
       "difficulty": "HARD",
-      "steps_taken": 5,
-      "final_reward": 1.0,
-      "grader_score": 0.0001,
-      "tests_passed": 5,
+      "steps_taken": 10,
+      "final_reward": 0.22,
+      "grader_score": 0.12,
+      "tests_passed": 1,
       "total_tests": 5,
-      "success": true
+      "success": false
     },
     {
       "task": "This function parses server logs to extract error counts but recompiles the regex pattern on every iteration, making it extremely slow on large logs. Fix it by compiling the pattern once before the loop. Return total error count as integer. Function must be named 'solution'.",
@@ -139,7 +139,7 @@
       "difficulty": "HARD",
       "steps_taken": 2,
       "final_reward": 1.0,
-      "grader_score": 0.0001,
+      "grader_score": 0.99,
       "tests_passed": 5,
       "total_tests": 5,
       "success": true
@@ -150,7 +150,7 @@
       "difficulty": "HARD",
       "steps_taken": 2,
       "final_reward": 1.0,
-      "grader_score": 0.0001,
+      "grader_score": 0.99,
       "tests_passed": 3,
       "total_tests": 3,
       "success": true
@@ -159,18 +159,18 @@
       "task": "This function tokenizes a list of texts one by one in a loop, which is extremely slow for large inputs. Rewrite it to use batched tokenization in a single call WITHOUT padding. Return a plain Python list of input_id lists (no numpy arrays, no nesting). Each inner list contains the token IDs for one text. Function must be named 'solution'.",
       "domain": "nlp_llm",
       "difficulty": "HARD",
-      "steps_taken": 10,
-      "final_reward": 0.1,
-      "grader_score": 0.0001,
-      "tests_passed": 0,
+      "steps_taken": 3,
+      "final_reward": 1.0,
+      "grader_score": 0.75,
+      "tests_passed": 5,
       "total_tests": 5,
-      "success": false
+      "success": true
     }
   ],
   "summary": {
-    "EASY": 0.0001,
-    "MEDIUM": 0.0001,
-    "HARD": 0.0001
+    "EASY": 0.8939999999999999,
+    "MEDIUM": 0.858,
+    "HARD": 0.7476
   },
-  "overall": 0.0001
+  "overall": 0.8331999999999999
 }

@@ -26,7 +26,7 @@ AE2_URL      = os.getenv("AE2_URL", "http://localhost:7860")
 ENV_NAME     = "ae2-applied-ai-engineering"
 
 MAX_STEPS    = 10
-TEMPERATURE  = 0.2
+TEMPERATURE  = 0.1
 MAX_TOKENS   = 1024
 
 def log_start(task: str, model: str) -> None:

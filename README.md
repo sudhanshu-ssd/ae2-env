@@ -13,7 +13,7 @@ app_port: 7860
 [![OpenEnv](https://img.shields.io/badge/OpenEnv-compatible-blue)](https://github.com/meta-pytorch/OpenEnv)
 [![HuggingFace Space](https://img.shields.io/badge/🤗-Space-yellow)](https://huggingface.co/spaces/sudhanshu-ssd/ae2-env)
 [![Python 3.11](https://img.shields.io/badge/python-3.11-green)](https://python.org)
-[![Baseline Score](https://img.shields.io/badge/baseline-0.893-brightgreen)](baseline_results.json)
+[![Baseline Score](https://img.shields.io/badge/baseline-0.83-brightgreen)](baseline_results.json)
 
 > A benchmark RL environment where AI agents fix and optimize broken production Python code across 5 real-world ML engineering domains.
 
@@ -133,10 +133,10 @@ Evaluated using `meta-llama/Llama-3.1-8B-Instruct` via HuggingFace Router (OpenA
 | eval_analysis | 1.000 | 1.000 | 1.000 |
 | model_ops | 1.000 | 1.000 | 1.000 |
 | nlp_llm | 1.000 | 1.000 | 1.000 |
-| **Average** | **1.000** | **0.914** | **0.764** |
+| **Average** | **0.894** | **0.858** | **0.748** |
 
 
-**Overall Baseline Score: 0.960** — Full results in [baseline_results.json](baseline_results.json).
+**Overall Baseline Score: 0.833** — Full results in [baseline_results.json](baseline_results.json).
 ---
 
 ## Setup & Usage
