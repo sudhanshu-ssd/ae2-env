@@ -58,26 +58,34 @@ def list_tasks():
 #     except Exception as e:
 #         return JSONResponse(status_code=500, content={"error": str(e)})
     
-# 1. Define the schema for the POST request
+from pydantic import BaseModel
+from fastapi.responses import JSONResponse
+
+# 1. Ensure the model is defined
 class GraderRequest(BaseModel):
     task_id: str
     code: str
 
-# 2. Change @app.get to @app.post
-@app.post("/grader") 
-def get_grader_score(request: GraderRequest): # Use the Pydantic model here
+@app.post("/grader")
+def get_grader_score(request: GraderRequest):
     try:
-        # 3. Access data from the request object
+        # 2. CRITICAL: You must use request.code and request.task_id
+        # If you used 'code' or 'task_id' directly, it caused the 500 error.
         result = grader(request.code, request.task_id)
-                
+        
+        # 3. Apply the mandatory Phase 2 clamp (strictly between 0 and 1)
+        raw_score = result.get("grader_score", 0.0)
+        clamped_score = max(0.01, min(raw_score, 0.99))
+        
         return JSONResponse(content={
-            "task_id": request.task_id,
             "grader_score": clamped_score,
-            "status": result["status"],
+            "status": result.get("status", "success"),
             "tests_passed": result.get("tests_passed"),
             "total_tests": result.get("total_tests")
         })
     except Exception as e:
+        # This will show up in your Hugging Face Space Logs
+        print(f"ERROR IN /grader: {str(e)}")
         return JSONResponse(status_code=500, content={"error": str(e)})
 
 
