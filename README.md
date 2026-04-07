@@ -13,7 +13,7 @@ app_port: 7860
 [![OpenEnv](https://img.shields.io/badge/OpenEnv-compatible-blue)](https://github.com/meta-pytorch/OpenEnv)
 [![HuggingFace Space](https://img.shields.io/badge/🤗-Space-yellow)](https://huggingface.co/spaces/sudhanshu-ssd/ae2-env)
 [![Python 3.11](https://img.shields.io/badge/python-3.11-green)](https://python.org)
-[![Baseline Score](https://img.shields.io/badge/baseline-0.960-brightgreen)](baseline_results.json)
+[![Baseline Score](https://img.shields.io/badge/baseline-0.893-brightgreen)](baseline_results.json)
 
 > A benchmark RL environment where AI agents fix and optimize broken production Python code across 5 real-world ML engineering domains.
 
@@ -133,7 +133,7 @@ Evaluated using `meta-llama/Llama-3.1-8B-Instruct` via HuggingFace Router (OpenA
 | eval_analysis | 1.000 | 1.000 | 1.000 |
 | model_ops | 1.000 | 1.000 | 1.000 |
 | nlp_llm | 1.000 | 1.000 | 1.000 |
-| **Average** | **1.000** | **0.957** | **0.920** |
+| **Average** | **1.000** | **0.914** | **0.764** |
 
 
 **Overall Baseline Score: 0.960** — Full results in [baseline_results.json](baseline_results.json).
@@ -231,12 +231,14 @@ ae2-env/
 ├── openenv.yaml          # OpenEnv spec metadata
 ├── requirements.txt
 ├── Dockerfile
-├── app.py                # FastAPI server
-├── baseline_results.json # Pre-computed baseline scores
-└── tasks/                # 15 task directories
+├── server/
+│   ├── __init__.py 
+│   └── app.py             # FastAPI server
+├── baseline_results.json  # Pre-computed baseline scores
+└── tasks/                 # 15 task directories
     └── {task_id}/
-        ├── task.json     # Task definition + broken code
-        └── tests.json    # Test cases
+        ├── task.json      # Task definition + broken code
+        └── tests.json     # Test cases
 ```
 
 ---

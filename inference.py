@@ -90,7 +90,7 @@ def print_summary(results, scores_by_difficulty):
             print(
                 f"{r.get('domain','?'):<20} "
                 f"{r.get('difficulty','?'):<8} "
-                f"{r.get('grader_score',0):.3f}    "
+                f"{r.get('grader_score',0.02):.3f}    "
                 f"{r.get('tests_passed',0)}/{r.get('total_tests',0):<6} "
                 f"{r.get('steps_taken',0)}"
             )
@@ -108,7 +108,7 @@ def print_summary(results, scores_by_difficulty):
             "model": MODEL_NAME,
             "results": results,
             "summary": {d: sum(s)/len(s) if s else 0.0 for d, s in scores_by_difficulty.items()},
-            "overall": sum(overall)/len(overall) if overall else 0.0
+            "overall": sum(overall)/len(overall) if overall else 0.02
         }, f, indent=2)
     print("\nSaved to baseline_results.json")
 
@@ -237,9 +237,9 @@ def run_episode(client, env, task_id: str = None) -> dict:
             f"{env.base_url}/grader",
             params={"task_id": task_id, "code": observation.code}
         )
-        final_grader_score = resp.json().get("grader_score", 0.0)
+        final_grader_score = resp.json().get("grader_score", 0.02)
     except Exception:
-        final_grader_score = final_reward
+        final_grader_score = 0.02
     
     return {
         "task": observation.task,
@@ -286,7 +286,7 @@ def main():
 
             results.append({
                 "task_id": task_id,
-                "grader_score": 0.0,
+                "grader_score": 0.02,
                 "difficulty": task_info.get("difficulty", "EASY"),
                 "domain": task_info.get("domain", ""),
                 "error": str(e)

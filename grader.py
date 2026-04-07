@@ -5,7 +5,7 @@ from sandbox import sandbox
 
 
 def grader(code: str, task_id: str) -> dict:
-    grader_score = 0.0
+    grader_score = 0.02
     task_tests = TESTS[task_id]
     baseline_time = task_tests["baseline_time"]
     baseline_mem = task_tests["baseline_mem"]
@@ -16,7 +16,7 @@ def grader(code: str, task_id: str) -> dict:
     if not syntax_ok:
         return {
             "status": "syntax_error",
-            "grader_score": 0,
+            "grader_score": 0.02,
             "tests_passed": 0,
             "total_tests": total_tests,
             "efficiency": {
@@ -53,19 +53,21 @@ def grader(code: str, task_id: str) -> dict:
     # ratio < 1.0 = worse than baseline
 
     if status == "syntax_error" or status == "runtime_error":
-        grader_score = 0.0
+        grader_score = 0.02
     elif status == "logic_error":
-        grader_score = 0.0
+        grader_score = 0.02
     elif status == "partial":
         grader_score = round(0.6 * (tests_passed / total_tests), 3)
     elif status == "success":
-        # correctness + efficiency
         base = 0.6
         if speed_ratio and speed_ratio >= 1.0:
             base += min(0.25, 0.25 * (speed_ratio - 1.0))
         if memory_ratio and memory_ratio >= 1.0:
             base += min(0.15, 0.15 * (memory_ratio - 1.0))
-        grader_score = round(min(base, 1.0), 3)
+        grader_score = round(min(base, 0.99), 3)
+
+    # At the very end, clamp everything:
+    grader_score = max(0.01, min(grader_score, 0.99))
 
     return {
         "status": status,
