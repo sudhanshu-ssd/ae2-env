@@ -133,10 +133,10 @@ Evaluated using `meta-llama/Llama-3.1-8B-Instruct` via HuggingFace Router (OpenA
 | eval_analysis | 1.000 | 1.000 | 1.000 |
 | model_ops | 1.000 | 1.000 | 1.000 |
 | nlp_llm | 1.000 | 1.000 | 1.000 |
-| **Average** | **0.894** | **0.858** | **0.748** |
+| **Average** | **0.894** | **0.851** | **0.748** |
 
 
-**Overall Baseline Score: 0.833** — Full results in [baseline_results.json](baseline_results.json).
+**Overall Baseline Score: 0.831** — Full results in [baseline_results.json](baseline_results.json).
 ---
 
 ## Setup & Usage
