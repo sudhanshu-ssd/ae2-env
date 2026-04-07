@@ -99,15 +99,15 @@ def trigger_baseline():
     """
     baseline_scores = {
         "EASY": {
-            "avg_score": 0.0,
+            "avg_score": 0.01,
             "note": "Run inference.py to generate actual baseline scores"
         },
         "MEDIUM": {
-            "avg_score": 0.0,
+            "avg_score": 0.01,
             "note": "Run inference.py to generate actual baseline scores"
         },
         "HARD": {
-            "avg_score": 0.0,
+            "avg_score": 0.01,
             "note": "Run inference.py to generate actual baseline scores"
         }
     }
@@ -153,7 +153,7 @@ def read_root():
     """
     return JSONResponse(content={
         "name": "ae2-applied-ai-engineering",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "description": "AE² is a benchmark environment for training and evaluating AI agents on real-world Applied AI Engineering tasks.",
         "status": "active",
         "repository": "https://github.com/sudhanshu-ssd/ae2-env"

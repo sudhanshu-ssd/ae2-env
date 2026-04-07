@@ -68,6 +68,11 @@ def grader(code: str, task_id: str) -> dict:
 
     # At the very end, clamp everything:
     grader_score = max(0.01, min(grader_score, 0.99))
+    grader_score = float(grader_score)
+    if grader_score >= 1.0:
+        grader_score = 0.99
+    if grader_score <= 0.0:
+        grader_score = 0.01
 
     return {
         "status": status,

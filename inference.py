@@ -107,7 +107,7 @@ def print_summary(results, scores_by_difficulty):
         json.dump({
             "model": MODEL_NAME,
             "results": results,
-            "summary": {d: sum(s)/len(s) if s else 0.0 for d, s in scores_by_difficulty.items()},
+            "summary": {d: sum(s)/len(s) if s else 0.01 for d, s in scores_by_difficulty.items()},
             "overall": sum(overall)/len(overall) if overall else 0.02
         }, f, indent=2)
     print("\nSaved to baseline_results.json")
@@ -205,7 +205,7 @@ def run_episode(client, env, task_id: str = None) -> dict:
         result = env.step(action)
         observation = result.observation
         
-        reward = result.reward or 0.0
+        reward = result.reward or 0.01
         final_reward = reward
         rewards.append(reward)
         

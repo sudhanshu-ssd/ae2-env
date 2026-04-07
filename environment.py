@@ -136,13 +136,13 @@ class EngEnv(Environment):
 
     def get_grader_score(self) -> dict:
         if not self.last_grader_result:
-            return {"grader_score": 0.0, "status": "no_attempt"}
+            return {"grader_score": 0.01, "status": "no_attempt"}
         return {
             "task_id": self.task_id,
-            "grader_score": self.last_grader_result.get("grader_score", 0.0),
+            "grader_score": self.last_grader_result.get("grader_score", 0.01),
             "status": self.last_grader_result.get("status"),
-            "tests_passed": self.last_grader_result.get("tests_passed", 0),
-            "total_tests": self.last_grader_result.get("total_tests", 0),
+            "tests_passed": self.last_grader_result.get("tests_passed", 0.01),
+            "total_tests": self.last_grader_result.get("total_tests", 0.01),
         }
 
     def _build_message(self, g_result: dict, reward: float, done: bool) -> str:

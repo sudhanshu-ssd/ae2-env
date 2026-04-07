@@ -12,9 +12,9 @@ def calculate_reward(g_result: dict, difficulty: str) -> float:
 
     # 1. Hard Fail Penalties (Negative Reinforcement)
     if status == "syntax_error":
-        return -0.3
+        return 0.01
     if status == "runtime_error":
-        return -0.2
+        return 0.02
 
     # 2. Correctness Score (Linear progression from 0.0 to 0.6)
     # We give more weight to correctness (60% of the total base reward)
@@ -50,9 +50,15 @@ def calculate_reward(g_result: dict, difficulty: str) -> float:
     # 5. Difficulty Scaling (Positive reinforcement for Harder tasks)
     # Instead of multiplying the whole thing (which risks > 1.0), 
     # we use a subtle multiplier that preserves the 0-1 range.
-    diff_bonus = {"EASY": 0.0, "MEDIUM": 0.05, "HARD": 0.1}
-    final_reward = min(total_base + diff_bonus.get(difficulty, 0.0), 1.0)
+    diff_bonus = {"EASY": 0.02, "MEDIUM": 0.05, "HARD": 0.1}
+    final_reward = total_base + diff_bonus.get(difficulty, 0.02)
 
+    # 1. Round first
+    rounded_val = round(final_reward, 3)
 
-    # Final clamp and round
-    return round(max(-0.3, min(final_reward, 1.0)), 3)
+    # 2. THEN Clamp to ensure we never hit 0.0 or 1.0 even after rounding
+    # This prevents 0.0001 from becoming 0.0 and 0.9999 from becoming 1.0
+    clamped_val = max(0.01, min(rounded_val, 0.99))
+
+    # 3. Final type safety cast
+    return float(clamped_val)
