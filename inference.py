@@ -232,13 +232,23 @@ def run_episode(client, env, task_id: str = None) -> dict:
     log_end(success=success, steps=steps_taken, rewards=rewards)
     
     # Get grader score via HTTP
+    # Inside run_episode()
     try:
-        resp = requests.get(
-            f"{env.base_url}/grader",
-            params={"task_id": task_id, "code": observation.code}
+        # Use requests.post and 'json=' parameter
+        resp = requests.post(
+            f"{AE2_URL}/grader", 
+            json={"task_id": task_id, "code": observation.code}
         )
-        final_grader_score = resp.json().get("grader_score", 0.02)
-    except Exception:
+        
+        if resp.status_code == 200:
+            data = resp.json()
+            final_grader_score = data.get("grader_score", 0.02)
+        else:
+            # This is where your 405 error is currently being caught
+            print(f"  Grader error: {resp.status_code}")
+            final_grader_score = 0.02
+    except Exception as e:
+        print(f"  Grader call failed: {e}")
         final_grader_score = 0.02
     
     return {

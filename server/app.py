@@ -13,6 +13,7 @@ from models import EngAction, EngObservation
 from environment import EngEnv
 from task_loader import TASKS, TESTS
 from grader import grader
+from pydantic import BaseModel
 
 # Base app from OpenEnv — gives /ws /reset /step /state /health /web /docs
 app = create_fastapi_app(EngEnv,EngAction,EngObservation)# ── Additional required endpoints ────────────────────────────────────────────
@@ -40,20 +41,42 @@ def list_tasks():
 
 
     
-@app.get("/grader")
-def get_grader_score(task_id: str, code: str):
+# @app.get("/grader")
+# def get_grader_score(task_id: str, code: str):
+#     try:
+#         result = grader(code, task_id)
+#         return JSONResponse(content={
+#             "task_id": task_id,
+#             "grader_score": result["grader_score"],
+#             "status": result["status"],
+#             "tests_passed": result["tests_passed"],
+#             "total_tests": result["total_tests"],
+#             "efficiency": result["efficiency"],
+#         })
+#     except KeyError:
+#         return JSONResponse(status_code=404, content={"error": f"Task '{task_id}' not found"})
+#     except Exception as e:
+#         return JSONResponse(status_code=500, content={"error": str(e)})
+    
+# 1. Define the schema for the POST request
+class GraderRequest(BaseModel):
+    task_id: str
+    code: str
+
+# 2. Change @app.get to @app.post
+@app.post("/grader") 
+def get_grader_score(request: GraderRequest): # Use the Pydantic model here
     try:
-        result = grader(code, task_id)
+        # 3. Access data from the request object
+        result = grader(request.code, request.task_id)
+                
         return JSONResponse(content={
-            "task_id": task_id,
-            "grader_score": result["grader_score"],
+            "task_id": request.task_id,
+            "grader_score": clamped_score,
             "status": result["status"],
-            "tests_passed": result["tests_passed"],
-            "total_tests": result["total_tests"],
-            "efficiency": result["efficiency"],
+            "tests_passed": result.get("tests_passed"),
+            "total_tests": result.get("total_tests")
         })
-    except KeyError:
-        return JSONResponse(status_code=404, content={"error": f"Task '{task_id}' not found"})
     except Exception as e:
         return JSONResponse(status_code=500, content={"error": str(e)})
 
