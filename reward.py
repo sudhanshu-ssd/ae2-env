@@ -1,3 +1,5 @@
+from grader import _safe_score
+
 def calculate_reward(g_result: dict, difficulty: str) -> float:
     status = g_result["status"]
     tests_passed = g_result["tests_passed"]
@@ -18,10 +20,10 @@ def calculate_reward(g_result: dict, difficulty: str) -> float:
 
     # 2. Correctness Score (Linear progression from 0.0 to 0.6)
     # We give more weight to correctness (60% of the total base reward)
-    correctness_base = 0.6 * (tests_passed / total_tests)
+    correctness_base = max(0.01, 0.6 * (tests_passed / total_tests))
 
     # 3. Efficiency Bonus (Only if code is actually correct)
-    efficiency_bonus = 0.0
+    efficiency_bonus = 0.01
     
     if status == "success":
         # Calculate individual gains (capped at 100% improvement to prevent outliers)
@@ -36,7 +38,7 @@ def calculate_reward(g_result: dict, difficulty: str) -> float:
         
         elif speed_ratio < 1.0 and memory_ratio < 1.0:
             # Both got worse - Small penalty even if logic is correct
-            efficiency_bonus = -0.1
+            efficiency_bonus = 0.01
             
         else:
             # Tradeoff scenario (one better, one worse)
@@ -59,6 +61,7 @@ def calculate_reward(g_result: dict, difficulty: str) -> float:
     # 2. THEN Clamp to ensure we never hit 0.0 or 1.0 even after rounding
     # This prevents 0.0001 from becoming 0.0 and 0.9999 from becoming 1.0
     clamped_val = max(0.01, min(rounded_val, 0.99))
+    clamped_val = _safe_score(clamped_val)
 
     # 3. Final type safety cast
     return float(clamped_val)

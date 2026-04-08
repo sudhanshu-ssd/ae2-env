@@ -57,7 +57,8 @@ def grader(code: str, task_id: str) -> dict:
     elif status == "logic_error":
         grader_score = 0.02
     elif status == "partial":
-        grader_score = round(0.6 * (tests_passed / total_tests), 3)
+        raw = 0.6 * (tests_passed / total_tests)
+        grader_score = round(max(0.01, min(raw, 0.99)), 3)
     elif status == "success":
         base = 0.6
         if speed_ratio and speed_ratio >= 1.0:
@@ -73,6 +74,9 @@ def grader(code: str, task_id: str) -> dict:
         grader_score = 0.99
     if grader_score <= 0.0:
         grader_score = 0.01
+
+    grader_score = _safe_score(grader_score)
+    print(f"DEBUG - TASK: {task_id} | GRADE: {grader_score} | TYPE: {type(grader_score)}")
 
     return {
         "status": status,
@@ -162,3 +166,13 @@ def check_syntax(code: str) -> tuple[bool, str]:
         return False, str(e)
     
 
+def _safe_score(score) -> float:
+    """Ensure score is strictly between 0 and 1, pure Python float."""
+    s = float(score)
+    if s <= 0.0 or s >= 1.0:
+        s = max(0.01, min(s, 0.99))
+    if s == 0.0:
+        s = 0.01
+    if s == 1.0:
+        s = 0.99
+    return s

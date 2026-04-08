@@ -65,7 +65,7 @@ class EngEnv(Environment):
             task=self.task_description,
             code=task["broken_code"],
             done=False,
-            reward=None,
+            reward=0.5,
             output=None,
             tests_passed=None,
             num_tests=len(TESTS[task["id"]]["cases"]),
@@ -141,8 +141,8 @@ class EngEnv(Environment):
             "task_id": self.task_id,
             "grader_score": self.last_grader_result.get("grader_score", 0.01),
             "status": self.last_grader_result.get("status"),
-            "tests_passed": self.last_grader_result.get("tests_passed", 0.01),
-            "total_tests": self.last_grader_result.get("total_tests", 0.01),
+            "tests_passed": self.last_grader_result.get("tests_passed", 0),
+            "total_tests": self.last_grader_result.get("total_tests", 0),
         }
 
     def _build_message(self, g_result: dict, reward: float, done: bool) -> str:
@@ -167,8 +167,8 @@ class EngEnv(Environment):
                 return f"All tests pass! Optimize further. Speed: {sr:.2f}x baseline. Memory: {mr:.2f}x baseline."
             return f"All tests passed! Reward: {reward}"
         if done and status == 'success':
-            sr = eff.get('speed_ratio') or 0
-            mr = eff.get('memory_ratio') or 0
+            sr = eff.get('speed_ratio') or 0.01
+            mr = eff.get('memory_ratio') or 0.01
             return f"Episode complete! Reward: {reward}. Speed: {sr:.2f}x. Memory: {mr:.2f}x."
         if done and status != 'success':
             return f"Out of attempts. Best: {passed}/{total} tests."

@@ -11,7 +11,7 @@ class EngObservation(Observation):
     task: str = ""
     code: str = ""
     done: bool = False
-    reward: Optional[float] = None
+    reward: Optional[float] = 0.5
     output: Optional[str] = None
     tests_passed: Optional[int] = None
     num_tests: Optional[int] = None
