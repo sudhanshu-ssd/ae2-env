@@ -72,7 +72,7 @@
       "domain": "deployment",
       "difficulty": "MEDIUM",
       "steps_taken": 2,
-      "final_reward": 0.713,
+      "final_reward": 0.72,
       "grader_score": 0.75,
       "tests_passed": 3,
       "total_tests": 3,
@@ -105,8 +105,8 @@
       "domain": "nlp_llm",
       "difficulty": "MEDIUM",
       "steps_taken": 2,
-      "final_reward": 0.839,
-      "grader_score": 0.78,
+      "final_reward": 0.908,
+      "grader_score": 0.862,
       "tests_passed": 2,
       "total_tests": 2,
       "success": true
@@ -115,12 +115,12 @@
       "task": "You are given a large DataFrame of sales. Calculate the average price per category. The current 'solution' uses a for-loop which is too slow for production. Rewrite it using vectorized Pandas operations to meet the performance baseline.Function must be named 'solution'.Return the result as a Python dict: {'category': mean_price, ...}",
       "domain": "data_eng",
       "difficulty": "HARD",
-      "steps_taken": 10,
-      "final_reward": 0.1,
-      "grader_score": 0.02,
-      "tests_passed": 0,
+      "steps_taken": 2,
+      "final_reward": 0.99,
+      "grader_score": 0.924,
+      "tests_passed": 5,
       "total_tests": 5,
-      "success": false
+      "success": true
     },
     {
       "task": "The 'get_user_profiles' function is hitting the database 100 times for 100 users, causing massive latency. Fix the logic to use the 'bulk_fetch_profiles' function instead of calling 'single_fetch' in a loop.Function must be named 'solution'.",
@@ -169,8 +169,8 @@
   ],
   "summary": {
     "EASY": 0.8939999999999999,
-    "MEDIUM": 0.852,
-    "HARD": 0.748
+    "MEDIUM": 0.8684,
+    "HARD": 0.9288000000000001
   },
-  "overall": 0.8313333333333334
+  "overall": 0.8970666666666667
 }
