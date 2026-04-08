@@ -74,7 +74,7 @@ def get_grader_score(request: GraderRequest):
         result = grader(request.code, request.task_id)
         
         # 3. Apply the mandatory Phase 2 clamp (strictly between 0 and 1)
-        raw_score = result.get("grader_score", 0.0)
+        raw_score = result.get("grader_score", 0.01)
         clamped_score = max(0.01, min(raw_score, 0.99))
         
         return JSONResponse(content={

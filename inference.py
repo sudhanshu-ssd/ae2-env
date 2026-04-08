@@ -9,13 +9,35 @@ Required env vars:
 """
 
 import os
+import sys
+
+# 1. FORCE SILENCE AT ENV LEVEL (Must be before other imports)
+os.environ["PYTHONWARNINGS"] = "ignore"
+import warnings
+warnings.filterwarnings("ignore")
+
+# 2. Wrap the noisy imports
+try:
+    import logging
+    logging.getLogger("websockets").setLevel(logging.ERROR)
+except:
+    pass
+
 import re
 import json
+import re
 from openai import OpenAI
 from models import EngAction
 from client import AE2Env
 import requests
 import time as _time
+import sys
+import warnings
+import os
+
+# 1. SILENCE ALL WARNINGS (Place this at the very top of the file)
+warnings.filterwarnings("ignore")
+os.environ["PYTHONWARNINGS"] = "ignore"
 
 
 # ── Config ──────────────────────────────────────────────────────────────────
@@ -29,18 +51,32 @@ MAX_STEPS    = 10
 TEMPERATURE  = 0.1
 MAX_TOKENS   = 1024
 
+
+
 def log_start(task: str, model: str) -> None:
-    print(f"[START] task={task} env={ENV_NAME} model={model}", flush=True)
+    # Ensure ONLY the [START] line goes to stdout
+    sys.stdout.write(f"[START] task={task} env={ENV_NAME} model={model}\n")
+    sys.stdout.flush()
 
 def log_step(step: int, action: str, reward: float, done: bool, error=None) -> None:
-    error_val = str(error).replace('\n', ' ').replace('\r', '')[:100] if error else "null"
-    done_val = str(done).lower()
-    action_clean = action[:50].replace('\n', ' ').replace('\r', '')
-    print(f"[STEP] step={step} action={action_clean} reward={reward:.2f} done={done_val} error={error_val}", flush=True)
+    # 1. Force lowercase booleans
+    done_str = "true" if done else "false"
+    # 2. Force exactly 2 decimal places
+    reward_str = f"{float(reward):.2f}"
+    # 3. Clean strings to prevent multi-line breaks
+    action_str = str(action).replace('\n', ' ').replace('\r', '').strip()
+    error_str = "null" if not error else str(error).replace('\n', ' ').replace('\r', '').strip()
+    
+    sys.stdout.write(f"[STEP] step={step} action={action_str} reward={reward_str} done={done_str} error={error_str}\n")
+    sys.stdout.flush()
 
 def log_end(success: bool, steps: int, rewards: list) -> None:
-    rewards_str = ",".join(f"{r:.2f}" for r in rewards)
-    print(f"[END] success={str(success).lower()} steps={steps} rewards={rewards_str}", flush=True)
+    success_str = "true" if success else "false"
+    # 4. Format every single reward in the list to 2 decimal places
+    rewards_formatted = ",".join([f"{float(r):.2f}" for r in rewards])
+    
+    sys.stdout.write(f"[END] success={success_str} steps={steps} rewards={rewards_formatted}\n")
+    sys.stdout.flush()
 
 
 
@@ -146,22 +182,22 @@ def run_episode(client, env, task_id: str = None) -> dict:
     result = env.reset(task_id=task_id)
     observation = result.observation
     
-    print(f"\n{'='*60}")
-    print(f"Task: {observation.task[:80]}...")
-    print(f"Domain: {observation.domain} | Difficulty: {observation.difficulty}")
-    print(f"{'='*60}")
+    # print(f"\n{'='*60}")
+    # print(f"Task: {observation.task[:80]}...")
+    # print(f"Domain: {observation.domain} | Difficulty: {observation.difficulty}")
+    # print(f"{'='*60}")
     
     # Mandatory [START] log
     log_start(task=task_id or observation.domain, model=MODEL_NAME)
     
     history = []
-    final_reward = 0.0
+    final_reward = 0.01
     steps_taken = 0
     rewards = []
     
     for step in range(1, MAX_STEPS + 1):
         if result.done:
-            print(f"Episode done at step {step-1}.")
+            # print(f"Episode done at step {step-1}.")
             break
         
         steps_taken = step
@@ -199,7 +235,7 @@ def run_episode(client, env, task_id: str = None) -> dict:
                 response_text = observation.code
         
         code = extract_code(response_text)
-        print(f"\nStep {step}: {code[:60].replace(chr(10), ' ')}...")
+        # print(f"\nStep {step}: {code[:60].replace(chr(10), ' ')}...")
         
         action = EngAction(sol=code)
         result = env.step(action)
@@ -220,10 +256,10 @@ def run_episode(client, env, task_id: str = None) -> dict:
             history_line = f"Step {step}: reward={reward:+.3f}"
         history.append(history_line)
         
-        print(f"  Reward: {reward:+.3f} | Tests: {observation.tests_passed}/{observation.num_tests} | Done: {result.done}")
+        # print(f"  Reward: {reward:+.3f} | Tests: {observation.tests_passed}/{observation.num_tests} | Done: {result.done}")
         
         if result.done:
-            print(f"  {observation.message}")
+            # print(f"  {observation.message}")
             break
     
     success = result.done and (observation.tests_passed == observation.num_tests)
@@ -266,10 +302,12 @@ def run_episode(client, env, task_id: str = None) -> dict:
 
 def main():
     client = OpenAI(base_url=API_BASE_URL, api_key=API_KEY)
+    warnings.filterwarnings("ignore")
+    os.environ["PYTHONWARNINGS"] = "ignore"
     
-    print("AE² — Applied AI Engineering Environment")
-    print(f"Model: {MODEL_NAME}")
-    print(f"Environment: {AE2_URL}")
+    # print("AE² — Applied AI Engineering Environment")
+    # print(f"Model: {MODEL_NAME}")
+    # print(f"Environment: {AE2_URL}")
     
     results = []
     scores_by_difficulty = {"EASY": [], "MEDIUM": [], "HARD": []}
@@ -303,7 +341,7 @@ def main():
             })
     
     # Print and save results (same as before)
-    print_summary(results, scores_by_difficulty)
+    # print_summary(results, scores_by_difficulty)
 
 
 if __name__ == "__main__":
