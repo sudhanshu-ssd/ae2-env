@@ -58,8 +58,8 @@ def list_tasks():
 #     except Exception as e:
 #         return JSONResponse(status_code=500, content={"error": str(e)})
     
-from pydantic import BaseModel
-from fastapi.responses import JSONResponse
+# from pydantic import BaseModel
+# from fastapi.responses import JSONResponse
 
 # 1. Ensure the model is defined
 class GraderRequest(BaseModel):
@@ -76,11 +76,12 @@ def get_grader_score(request: GraderRequest):
         # 3. Apply the mandatory Phase 2 clamp (strictly between 0 and 1)
         raw_score = result.get("grader_score", 0.01)
         clamped_score = max(0.01, min(raw_score, 0.99))
+        clamped_score = float(clamped_score)
         # res["grader_score"] = max(0.05, min(float(raw_score), 0.95))
         # return JSONResponse(content=res)
         
         return JSONResponse(content={
-            "grader_score": float(clamped_score),
+            "grader_score": clamped_score,
             "status": result.get("status", "success"),
             "tests_passed": result.get("tests_passed"),
             "total_tests": result.get("total_tests")

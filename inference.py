@@ -58,22 +58,12 @@ def log_step(step: int, action: str, reward: float, done: bool, error=None) -> N
     sys.stdout.write(f"[STEP] step={step} action={a_clean} reward={r_str} done={d_str} error={e_clean}\n")
     sys.stdout.flush()
 
-def log_end(success: bool, steps: int, rewards: list, final_grader_score: float) -> None:
+def log_end(success: bool, steps: int, rewards: list) -> None:
     success_str = "true" if success else "false"
-    
-    # 1. Clamp the score strictly between 0 and 1
-    # Use 2 decimal places as per rules
-    safe_score = max(0.01, min(float(final_grader_score), 0.99))
-    
-    # 2. Clamp the rewards list
-    safe_rewards = [f"{max(0.01, min(float(r), 0.99)):.2f}" for r in rewards]
-    rewards_str = ",".join(safe_rewards)
-    
-    # 3. CONSTRUCT THE EXACT TAG REQUIRED
-    # Format: [END] success=true steps=n score=0.xx rewards=r1,r2
-    line = f"[END] success={success_str} steps={steps} score={safe_score:.2f} rewards={rewards_str}\n"
-    
-    sys.stdout.write(line)
+    rewards_formatted = ",".join([f"{float(r):.2f}" for r in rewards])
+    score = sum(rewards) / len(rewards) if rewards else 0.5
+    score = max(0.01, min(score, 0.99))
+    sys.stdout.write(f"[END] success={success_str} steps={steps} score={score:.3f} rewards={rewards_formatted}\n")
     sys.stdout.flush()
 
 
