@@ -76,7 +76,6 @@ def grader(code: str, task_id: str) -> dict:
         grader_score = 0.01
 
     grader_score = _safe_score(grader_score)
-    print(f"DEBUG - TASK: {task_id} | GRADE: {grader_score} | TYPE: {type(grader_score)}")
 
     return {
         "status": status,

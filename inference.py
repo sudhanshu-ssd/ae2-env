@@ -8,36 +8,24 @@ Required env vars:
     AE2_URL        Your HF Space URL (e.g. https://username-ae2-env.hf.space)
 """
 
-import os
 import sys
-
-# 1. FORCE SILENCE AT ENV LEVEL (Must be before other imports)
-os.environ["PYTHONWARNINGS"] = "ignore"
+import os
 import warnings
-warnings.filterwarnings("ignore")
-
-# 2. Wrap the noisy imports
-try:
-    import logging
-    logging.getLogger("websockets").setLevel(logging.ERROR)
-except:
-    pass
-
+import logging
 import re
 import json
-import re
+
+# Silence all warnings to stderr only
+warnings.filterwarnings("ignore")
+logging.getLogger("websockets").setLevel(logging.CRITICAL)
+logging.getLogger("websockets.legacy").setLevel(logging.CRITICAL)
+logging.basicConfig(stream=sys.stderr, level=logging.CRITICAL)
+
 from openai import OpenAI
 from models import EngAction
 from client import AE2Env
 import requests
 import time as _time
-import sys
-import warnings
-import os
-
-# 1. SILENCE ALL WARNINGS (Place this at the very top of the file)
-warnings.filterwarnings("ignore")
-os.environ["PYTHONWARNINGS"] = "ignore"
 
 
 # ── Config ──────────────────────────────────────────────────────────────────
