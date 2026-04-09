@@ -14,7 +14,7 @@ def calculate_reward(g_result: dict, difficulty: str) -> float:
 
     # 1. Hard Fail Penalties (Negative Reinforcement)
     if status == "syntax_error":
-        return 0.02
+        return 0.01
     if status == "runtime_error":
         return 0.02
 
@@ -60,7 +60,7 @@ def calculate_reward(g_result: dict, difficulty: str) -> float:
 
     # 2. THEN Clamp to ensure we never hit 0.0 or 1.0 even after rounding
     # This prevents 0.0001 from becoming 0.0 and 0.9999 from becoming 1.0
-    clamped_val = max(0.02, min(rounded_val, 0.98))
+    clamped_val = max(0.02, min(rounded_val, 0.99))
     clamped_val = _safe_score(clamped_val)
 
     # 3. Final type safety cast

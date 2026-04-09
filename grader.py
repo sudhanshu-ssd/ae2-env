@@ -71,7 +71,7 @@ def grader(code: str, task_id: str) -> dict:
     grader_score = max(0.02, min(grader_score, 0.98))
     grader_score = float(grader_score)
     if grader_score >= 1.0:
-        grader_score = 0.98
+        grader_score = 0.99
     if grader_score <= 0.0:
         grader_score = 0.02
 
@@ -169,9 +169,9 @@ def _safe_score(score) -> float:
     """Ensure score is strictly between 0 and 1, pure Python float."""
     s = float(score)
     if s <= 0.0 or s >= 1.0:
-        s = max(0.02, min(s, 0.98))
+        s = max(0.02, min(s, 0.99))
     if s == 0.0:
         s = 0.02
     if s == 1.0:
-        s = 0.98
+        s = 0.99
     return s
