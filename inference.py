@@ -63,7 +63,7 @@ def log_end(success: bool, steps: int, rewards: list) -> None:
     rewards_formatted = ",".join([f"{float(r):.2f}" for r in rewards])
     score = sum(rewards) / len(rewards) if rewards else 0.5
     score = max(0.01, min(score, 0.99))
-    sys.stdout.write(f"[END] success={success_str} steps={steps} score={score:.3f} rewards={rewards_formatted}\n")
+    sys.stdout.write(f"[END] success={success_str} steps={steps} score={score:.2f} rewards={rewards_formatted}\n")
     sys.stdout.flush()
 
 
