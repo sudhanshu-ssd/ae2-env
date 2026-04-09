@@ -17,7 +17,7 @@ class AE2Env(EnvClient[EngAction, EngObservation, EngState]):
             task=obs_data.get("task", ""),
             code=obs_data.get("code", ""),
             done=payload.get("done", False),
-            reward=payload.get("reward"),
+            reward=payload.get("reward",0.02),
             output=obs_data.get("output"),
             tests_passed=obs_data.get("tests_passed"),
             num_tests=obs_data.get("num_tests"),
