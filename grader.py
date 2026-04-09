@@ -65,15 +65,15 @@ def grader(code: str, task_id: str) -> dict:
             base += min(0.25, 0.25 * (speed_ratio - 1.0))
         if memory_ratio and memory_ratio >= 1.0:
             base += min(0.15, 0.15 * (memory_ratio - 1.0))
-        grader_score = round(min(base, 0.99), 3)
+        grader_score = round(min(base, 0.98), 3)
 
     # At the very end, clamp everything:
-    grader_score = max(0.01, min(grader_score, 0.99))
+    grader_score = max(0.02, min(grader_score, 0.98))
     grader_score = float(grader_score)
     if grader_score >= 1.0:
-        grader_score = 0.99
+        grader_score = 0.98
     if grader_score <= 0.0:
-        grader_score = 0.01
+        grader_score = 0.02
 
     grader_score = _safe_score(grader_score)
 
@@ -169,9 +169,9 @@ def _safe_score(score) -> float:
     """Ensure score is strictly between 0 and 1, pure Python float."""
     s = float(score)
     if s <= 0.0 or s >= 1.0:
-        s = max(0.01, min(s, 0.99))
+        s = max(0.02, min(s, 0.98))
     if s == 0.0:
-        s = 0.01
+        s = 0.02
     if s == 1.0:
-        s = 0.99
+        s = 0.98
     return s

@@ -60,9 +60,10 @@ def log_step(step: int, action: str, reward: float, done: bool, error=None) -> N
 
 def log_end(success: bool, steps: int, rewards: list) -> None:
     success_str = "true" if success else "false"
-    # 4. Format every single reward in the list to 2 decimal places
-    rewards_formatted = ",".join([f"{float(r):.2f}" for r in rewards])
-    
+    # Ensure every reward is 2 decimal places and clamped
+    safe_rewards = [f"{max(0.01, min(0.99, float(r))):.2f}" for r in rewards]
+    rewards_formatted = ",".join(safe_rewards)
+    # Final string: [END] success=true steps=5 rewards=0.50,0.60...
     sys.stdout.write(f"[END] success={success_str} steps={steps} rewards={rewards_formatted}\n")
     sys.stdout.flush()
 
