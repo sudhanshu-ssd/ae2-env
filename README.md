@@ -246,4 +246,3 @@ ae2-env/
 ## Author
 
 **Sudhanshu Saini** — B.Tech. AI & Data Science, CTAE Udaipur  
-**Tanmay Tomar** - B.Tech. AI & Data Science, MITRC Alwar 
